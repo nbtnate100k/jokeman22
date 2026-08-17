@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>View Certifications</title>
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    /* Updated font to closely match iOS/Apple system fonts */
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+
+  body {
+    background-color: #1a1a1a;
+    display: flex;
+    justify-content: center;
+  }
+
+  .app-container {
+    width: 100%;
+    max-width: 600px; 
+    background-color: #222222;
+    min-height: 100vh;
+    padding-bottom: 30px;
+    color: #ffffff;
+  }
+
+  /* Close Button Area */
+  .close-bar {
+    padding: 15px 10px 5px 10px;
+  }
+  
+  .btn-close {
+    width: 100%;
+    background-color: #777777;
+    color: #ffffff;
+    padding: 8px; 
+    text-align: center;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+
+  /* Header */
+  .header-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 800;
+    margin: 15px 0 25px 0;
+    letter-spacing: 0.5px;
+  }
+
+  /* Card General Styles */
+  .cert-card {
+    border-radius: 8px;
+    margin: 0 10px 25px 10px;
+    padding: 15px 15px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    /* Forcing both cards to be the exact same height */
+    height: 350px; 
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card-grey {
+    background-color: #555555;
+  }
+
+  /* Card Header Area */
+  .cert-header {
+    text-align: center;
+    margin-bottom: 8px;
+    /* Ensures the header area takes up the same space even if text wraps */
+    min-height: 45px; 
+  }
+
+  .cert-code {
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 2px;
+  }
+
+  .cert-title {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.2;
+  }
+
+  /* Badges */
+  .badge-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px; 
+  }
+
+  .badge {
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .badge-active { background-color: #388e3c; }
+  .badge-worker { background-color: #8e24aa; }
+
+  /* Profile Area */
+  .profile-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    /* Pushed down further from the badges */
+    margin-top: 25px; 
+    margin-bottom: 12px;
+  }
+
+  /* Profile Pic CSS */
+  .profile-pic {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #ffffff;
+  }
+
+  .profile-name {
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  /* Date Info */
+  .info-text {
+    font-size: 14px;
+    /* Tightened spacing */
+    line-height: 1.2; 
+  }
+
+  .divider {
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.6);
+    margin: 10px 0; 
+  }
+
+  /* Bottom Details List */
+  .details-list {
+    list-style: none;
+  }
+  
+  .details-list li {
+    font-size: 14px;
+    /* Tightened spacing so it's not spread out anymore */
+    line-height: 1.2; 
+    margin-bottom: 0px; 
+  }
+</style>
+</head>
+<body>
+
+<div class="app-container">
+  
+  <div class="close-bar">
+    <div class="btn-close">Close</div>
+  </div>
+
+  <h1 class="header-title">View Certifications</h1>
+
+  <!-- First Certification Card -->
+  <div class="cert-card card-grey">
+    <div class="cert-header">
+      <div class="cert-code">SCA-201</div>
+      <div class="cert-title">4-Hour Supported Scaffold User and Refresher</div>
+    </div>
+    
+    <div class="badge-container">
+      <span class="badge badge-active">Active</span>
+      <span class="badge badge-worker">Worker</span>
+    </div>
+
+    <div class="profile-row">
+      <img class="profile-pic" src="https://i.postimg.cc/Jzxnmmwf/Gemini-Generated-Image-qto6vqto6vqto6vq-removebg-preview.png" alt="Ashley G Chandler Profile">
+      <div class="profile-name">Ashley G Chandler</div>
+    </div>
+
+    <div class="info-text">
+      Issued/Refreshed On: 1/12/24<br>
+      Expires On: 1/12/28
+    </div>
+
+    <div class="divider"></div>
+
+    <ul class="details-list">
+      <li>Card #: </li>
+      <li>Issued By: Swing Staging Training &amp; Safety, LLC</li>
+      <li>Verified By: Swing Staging Training &amp; Safety, LLC</li>
+      <li>Trainer Name: Richard Campos</li>
+    </ul>
+  </div>
+
+  <!-- Second Certification Card -->
+  <div class="cert-card card-grey">
+    <div class="cert-header">
+      <div class="cert-code">SCA-211</div>
+      <div class="cert-title">4-Hour Supported Scaffold User and Refresher (Scaffold Card and SST)</div>
+    </div>
+    
+    <div class="badge-container">
+      <span class="badge badge-active">Active</span>
+      <span class="badge badge-worker">Worker</span>
+    </div>
+
+    <div class="profile-row">
+      <img class="profile-pic" src="https://i.postimg.cc/Jzxnmmwf/Gemini-Generated-Image-qto6vqto6vqto6vq-removebg-preview.png" alt="Ashley G Chandler Profile">
+      <div class="profile-name">Ashley G Chandler</div>
+    </div>
+
+    <div class="info-text">
+      Issued/Refreshed On: 1/12/24<br>
+      Expires On: 1/12/28
+    </div>
+
+    <div class="divider"></div>
+
+    <ul class="details-list">
+      <li>Card #: </li>
+      <li>Issued By: Gallagher Bassett Technical Services, LLC</li>
+      <li>Verified By: Gallagher Bassett Technical Services, LLC</li>
+      <li>Trainer Name: Michael Berry</li>
+    </ul>
+  </div>
+
+</div>
+
+</body>
+</html>
