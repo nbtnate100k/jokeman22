@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NYC Training Connect</title>
+
+<!-- Standard Browser Icon -->
+<link rel="icon" type="image/png" href="https://i.postimg.cc/fb50HmTx/unnamed.png">
+
+<!-- Apple Specific iOS Home Screen Icons -->
+<link rel="apple-touch-icon" href="https://i.postimg.cc/fb50HmTx/unnamed.png">
+<link rel="apple-touch-icon" sizes="152x152" href="https://i.postimg.cc/fb50HmTx/unnamed.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://i.postimg.cc/fb50HmTx/unnamed.png">
+<link rel="apple-touch-icon" sizes="167x167" href="https://i.postimg.cc/fb50HmTx/unnamed.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Training Connect">
+
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+
+  body {
+    background-color: #1a1a1a; 
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+  }
+
+  .app-container {
+    width: 100%;
+    max-width: 600px; 
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: #20356c;
+  }
+
+  /* PAGE VISIBILITY */
+  .page {
+    display: none;
+    flex: 1;
+    width: 100%;
+    height: 100%;
+  }
+
+  .page.active {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* SCANNER PAGE STYLES */
+  .scanner-page {
+    background-color: #20356c;
+  }
+
+  .top-bar {
+    background-color: #383838;
+    color: #ffffff;
+    text-align: center;
+    padding: 15px 10px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 15px 12px 15px; 
+  }
+
+  .header-logos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; 
+    margin-top: 5px;
+    margin-bottom: 12px; 
+    color: #ffffff;
+  }
+
+  .nyc-logo-img {
+    height: 34px; 
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+  }
+
+  .training-connect-text {
+    font-size: 16px; 
+    line-height: 1.1;
+    font-weight: 400;
+    letter-spacing: 0.2px;
+    text-align: left;
+  }
+
+  .scanner-box {
+    width: 100%;
+    flex: 1; 
+    background-color: #757575;
+    border: 3px solid #ffffff; 
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px; 
+  }
+
+  .question-mark {
+    font-size: 120px;
+    color: #ffffff;
+    font-weight: 700;
+  }
+
+  .scan-btn {
+    width: 100%;
+    background-color: #8c8c8c;
+    color: #ffffff;
+    padding: 14px; 
+    text-align: center;
+    font-size: 14px; 
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+  }
+
+  .bottom-nav {
+    background-color: #383838; 
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    height: 85px; 
+    padding-top: 12px; 
+  }
+
+  .nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    color: #a0a0a0;
+    font-size: 11px;
+    gap: 4px;
+    cursor: pointer;
+    height: 45px;
+  }
+
+  .nav-item.active {
+    color: #ffffff;
+  }
+
+  .nav-icon {
+    width: 30px;
+    height: 30px;
+    fill: currentColor;
+  }
+
+  .custom-nav-icon {
+    height: 28px; 
+    width: 45px;
+    object-fit: cover; 
+    object-position: top center; 
+    filter: brightness(0) invert(1);
+    transform: scale(1.6); 
+    margin-bottom: 6px; 
+  }
+
+  /* STATUS BAR */
+  .status-bar {
+    background-color: #4a4a4a;
+    color: #ffffff;
+    padding: 8px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  /* CERTIFICATIONS PAGE STYLES */
+  .certifications-page {
+    background-color: #222222;
+    overflow-y: auto;
+    flex-direction: column;
+    min-height: 100%;
+  }
+
+  .close-bar {
+    padding: 15px 10px 5px 10px;
+  }
+  
+  .btn-close {
+    width: 100%;
+    background-color: #777777;
+    color: #ffffff;
+    padding: 8px; 
+    text-align: center;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 4px;
+    border: none;
+  }
+
+  .header-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 800;
+    margin: 15px 0 25px 0;
+    letter-spacing: 0.5px;
+    color: #ffffff;
+  }
+
+  .cert-card {
+    border-radius: 8px;
+    margin: 0 10px 25px 10px;
+    padding: 15px 15px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    height: 350px; 
+    display: flex;
+    flex-direction: column;
+    background-color: #555555;
+  }
+
+  .card-grey {
+    background-color: #555555;
+  }
+
+  .cert-header {
+    text-align: center;
+    margin-bottom: 8px;
+    min-height: 45px; 
+  }
+
+  .cert-code {
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 2px;
+    color: #ffffff;
+  }
+
+  .cert-title {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.2;
+    color: #ffffff;
+  }
+
+  .badge-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px; 
+  }
+
+  .badge {
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #ffffff;
+  }
+
+  .badge-active { background-color: #388e3c; }
+  .badge-worker { background-color: #8e24aa; }
+
+  .profile-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 25px; 
+    margin-bottom: 12px;
+  }
+
+  .profile-pic {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #ffffff;
+  }
+
+  .profile-name {
+    font-size: 16px;
+    font-weight: 500;
+    color: #ffffff;
+  }
+
+  .info-text {
+    font-size: 14px;
+    line-height: 1.2;
+    color: #ffffff;
+  }
+
+  .divider {
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.6);
+    margin: 10px 0; 
+  }
+
+  .details-list {
+    list-style: none;
+  }
+  
+  .details-list li {
+    font-size: 14px;
+    line-height: 1.2; 
+    margin-bottom: 0px;
+    color: #ffffff;
+  }
+</style>
+</head>
+<body>
+
+<div class="app-container">
+  
+  <!-- SCANNER PAGE -->
+  <div id="scannerPage" class="page scanner-page active">
+    <div class="top-bar">Scan</div>
+
+    <div class="main-content">
+      <div class="header-logos">
+        <img src="https://i.postimg.cc/8CdxxkqQ/NYC-DOB-Buildings-Logo-removebg-preview.png" alt="NYC Buildings Logo" class="nyc-logo-img">
+        <div class="training-connect-text">
+          TRAINING<br>CONNECT
+        </div>
+      </div>
+
+      <div class="scanner-box">
+        <div class="question-mark">?</div>
+      </div>
+
+      <button class="scan-btn" onclick="startScanning()">Scan Card</button>
+    </div>
+
+    <div class="bottom-nav">
+      <div class="nav-item active">
+        <img src="https://i.postimg.cc/BQG7ffBP/Chat-GPT-Image-Aug-17-2026-07-12-31-PM-removebg-preview.png" alt="Scan Icon" class="custom-nav-icon">
+        <span>Scan</span>
+      </div>
+      
+      <div class="nav-item">
+        <svg class="nav-icon" viewBox="0 0 24 24">
+          <path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+        </svg>
+        <span>About</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CERTIFICATIONS PAGE -->
+  <div id="certificationsPage" class="page certifications-page">
+    <div class="close-bar">
+      <div class="btn-close" onclick="goBack()">Close</div>
+    </div>
+
+    <h1 class="header-title">View Certifications</h1>
+
+    <!-- First Certification Card -->
+    <div class="cert-card card-grey">
+      <div class="cert-header">
+        <div class="cert-code">SCA-201</div>
+        <div class="cert-title">4-Hour Supported Scaffold User and Refresher</div>
+      </div>
+      
+      <div class="badge-container">
+        <span class="badge badge-active">Active</span>
+        <span class="badge badge-worker">Worker</span>
+      </div>
+
+      <div class="profile-row">
+        <img class="profile-pic" src="https://i.postimg.cc/Jzxnmmwf/Gemini-Generated-Image-qto6vqto6vqto6vq-removebg-preview.png" alt="Ashley G Chandler Profile">
+        <div class="profile-name">Ashley G Chandler</div>
+      </div>
+
+      <div class="info-text">
+        Issued/Refreshed On: 1/12/24<br>
+        Expires On: 1/12/28
+      </div>
+
+      <div class="divider"></div>
+
+      <ul class="details-list">
+        <li>Card #: </li>
+        <li>Issued By: Swing Staging Training &amp; Safety, LLC</li>
+        <li>Verified By: Swing Staging Training &amp; Safety, LLC</li>
+        <li>Trainer Name: Richard Campos</li>
+      </ul>
+    </div>
+
+    <!-- Second Certification Card -->
+    <div class="cert-card card-grey">
+      <div class="cert-header">
+        <div class="cert-code">SCA-211</div>
+        <div class="cert-title">4-Hour Supported Scaffold User and Refresher (Scaffold Card and SST)</div>
+      </div>
+      
+      <div class="badge-container">
+        <span class="badge badge-active">Active</span>
+        <span class="badge badge-worker">Worker</span>
+      </div>
+
+      <div class="profile-row">
+        <img class="profile-pic" src="https://i.postimg.cc/Jzxnmmwf/Gemini-Generated-Image-qto6vqto6vqto6vq-removebg-preview.png" alt="Ashley G Chandler Profile">
+        <div class="profile-name">Ashley G Chandler</div>
+      </div>
+
+      <div class="info-text">
+        Issued/Refreshed On: 1/12/24<br>
+        Expires On: 1/12/28
+      </div>
+
+      <div class="divider"></div>
+
+      <ul class="details-list">
+        <li>Card #: </li>
+        <li>Issued By: Gallagher Bassett Technical Services, LLC</li>
+        <li>Verified By: Gallagher Bassett Technical Services, LLC</li>
+        <li>Trainer Name: Michael Berry</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function startScanning() {
+    const btn = document.querySelector('.scan-btn');
+    btn.innerText = 'Scanning...';
+    btn.disabled = true;
+    
+    setTimeout(() => {
+      showCertificationsPage();
+    }, 5000);
+  }
+
+  function showCertificationsPage() {
+    document.getElementById('scannerPage').classList.remove('active');
+    document.getElementById('certificationsPage').classList.add('active');
+  }
+
+  function goBack() {
+    document.getElementById('certificationsPage').classList.remove('active');
+    document.getElementById('scannerPage').classList.add('active');
+    
+    const btn = document.querySelector('.scan-btn');
+    btn.innerText = 'Scan Card';
+    btn.disabled = false;
+  }
+</script>
+
+</body>
+</html>
